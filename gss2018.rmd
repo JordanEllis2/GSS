@@ -90,6 +90,8 @@ this Inferential Results show that if you own a gun you have 2.271 odds of capit
 
 Is there a difference in years of education (EDUC) between the those who did or did not vote in 2012 (VOTE12)?
 
+there is no difference between those who did or didnt vote in 2012
+
 ## Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
@@ -108,15 +110,30 @@ Is there a difference in years of education (EDUC) between the those who did or 
 boxplot(EDUC~VOTE12,data=GSSdata)
 ```
 
+people that voted in 2012 tend to have more education
+
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 #### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+
+```{r}
+favstats(EDUC~VOTE12,data=GSSdata)
+```
+
+the avarge  level of education for people who voted in 2012 is 15.7
+
 ### Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+```{r}
+t.test(EDUC~VOTE12,data=GSSdata)
+```
+
+there is a difference in education between people that did or didnt vote in 2012
 
 #  Question 3
 
@@ -136,18 +153,41 @@ Determine if a persons performance on the wordsum test (WORDSUM) is independent 
 
 #### Graphical Descriptive Results
 
+
+```{r}
+plot(WORDSUM~DEGREE,data=GSSdata)
+```
+this grpah shows that persons performance on the wordsum test is independent on the wordsum test 
+
+
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 #### Numerical Descriptive Results
 
+
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+favstats(WORDSUM~DEGREE,data=GSSdata)
+```
+
+the higher educations have the highest numbers 
 
 ### Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+```{r}
+model1 <- aov(WORDSUM~DEGREE,data=GSSdata)
+summary.aov(model1)
+```
+
 
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
+in question 1 the  barchart shows gun owners are more likley to favor capital punishment   
+in question 2 there is a difference in education between people that did or didnt vote in 2012   
+in question 3 persons performance on the wordsum test is independent on the wordsum test 
